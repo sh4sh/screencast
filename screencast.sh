@@ -3,7 +3,7 @@
 #function to cast to Main Room
 maincast () {
  recordmydesktop --on-the-fly-encoding --overwrite &
- castnow out.ogv --address 192.168.1.5 --tomp4
+ castnow out.ogv --address 192.168.1.5 --tomp4 &
 }
 
 #function to cast to Bedroom
