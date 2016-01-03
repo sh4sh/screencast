@@ -1,4 +1,6 @@
 #!/bin/bash
+#Hosted at http://github.com/sunshineplur/screencast
+#Capa
 
 #function to cast to Main Room
 maincast () {
@@ -9,15 +11,16 @@ maincast () {
 #function to cast to Bedroom
 bedroomcast () {
  recordmydesktop --overwrite --on-the-fly-encoding &
- castnow out.ogv --address 192.168.1.10 --tomp4
+ castnow out.ogv --address 192.168.1.10 --tomp4 &
 }
 
 #function to input custom IP address
 #broken af
-#customaddr () {
-# recordmydesktop --overwrite --on-the-fly-encoding &
-# castnow out.ogv --address "$REPLY"
-#}
+customaddr () {
+ read -r REPLY
+ recordmydesktop --overwrite --on-the-fly-encoding &
+ castnow out.ogv --tomp4 --address $REPLY &
+}
 	
 echo "Which device should I connect to?"
 echo "View Favourites, or enter a custom IP address for your device?"
@@ -42,9 +45,9 @@ select CHOICE in "Favourites" "Custom" ; do
 #how tf does read work
 #"-r" option detects raw input and ignores special characters(?)
 #this is really b0rk
-   read -r
+   read -r REPLY
    recordmydesktop --overwrite --on-the-fly-encoding &
-   castnow out.ogv --address $REPLY --tomp4
+   castnow out.ogv --tomp4 --address $REPLY
    break
   ;;
  esac
