@@ -1,26 +1,27 @@
 #!/bin/bash
 
 maincast () {
- recordmydesktop --overwrite --on-the-fly-encoding sc.ogv &
- castnow --address 192.168.1.5 --tomp4 sc.ogv
+ recordmydesktop sc.ogv --on-the-fly-encoding --overwrite &
+ castnow sc.ogv --address 192.168.1.5 --tomp4
 }
 
 bedroomcast () {
- recordmydesktop --overwrite --on-the-fly-encoding sc.ogv &
- castnow --address 192.168.1.10 --tomp4 sc.ogv
+ recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
+ castnow sc.ogv --address 192.168.1.10 --tomp4
 }
 
-customaddr () {
- recordmydesktop --overwrite --on-the-fly-encoding sc.ogv & castnow sc.ogv --address $REPLY
-}
+#customaddr () {
+# recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
+# castnow sc.ogv --address "$REPLY"
+#}
 	
 echo "Which device should I connect to?"
 echo "View Favourites, or enter a custom IP address for your device?"
-select choice in "Favourites" "Custom" ; do
+select CHOICE in "Favourites" "Custom" ; do
  case $CHOICE in
   "Favourites")
-    select device in "Main" "Bedroom" ; do
-     case $DEV in
+    select DEVICE in "Main" "Bedroom" ; do
+     case $DEVICE in
       "Main")
        maincast
        break
@@ -31,10 +32,12 @@ select choice in "Favourites" "Custom" ; do
       ;;
      esac
     done
+   ;;
   "Custom")
    echo "What is the IP address of the device I should connect to?"
    read -r
-   customaddr $REPLY
+   recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
+   castnow sc.ogv --address $REPLY --tomp4
    break
   ;;
  esac
