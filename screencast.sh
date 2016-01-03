@@ -2,21 +2,21 @@
 
 #function to cast to Main Room
 maincast () {
- recordmydesktop sc.ogv --on-the-fly-encoding --overwrite &
- castnow sc.ogv --address 192.168.1.5 --tomp4
+ recordmydesktop --on-the-fly-encoding --overwrite &
+ castnow out.ogv --address 192.168.1.5 --tomp4
 }
 
 #function to cast to Bedroom
 bedroomcast () {
- recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
- castnow sc.ogv --address 192.168.1.10 --tomp4
+ recordmydesktop --overwrite --on-the-fly-encoding &
+ castnow out.ogv --address 192.168.1.10 --tomp4
 }
 
 #function to input custom IP address
 #broken af
 #customaddr () {
-# recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
-# castnow sc.ogv --address "$REPLY"
+# recordmydesktop --overwrite --on-the-fly-encoding &
+# castnow out.ogv --address "$REPLY"
 #}
 	
 echo "Which device should I connect to?"
@@ -39,12 +39,12 @@ select CHOICE in "Favourites" "Custom" ; do
    ;;
   "Custom")
    echo "What is the IP address of the device I should connect to?"
-   #how tf does read work
-   #-r detects raw input and ignores special characters(?)
-   #this is really b0rk
+#how tf does read work
+#"-r" option detects raw input and ignores special characters(?)
+#this is really b0rk
    read -r
-   recordmydesktop sc.ogv --overwrite --on-the-fly-encoding &
-   castnow sc.ogv --address $REPLY --tomp4
+   recordmydesktop --overwrite --on-the-fly-encoding &
+   castnow out.ogv --address $REPLY --tomp4
    break
   ;;
  esac
