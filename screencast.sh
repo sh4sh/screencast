@@ -1,6 +1,7 @@
 #!/bin/bash
 #Hosted at http://github.com/sunshineplur/screencast
-#Capa
+#screencast uses RecordMyDesktop and castnow to send a video
+#and audio stream to any Chromecast device on your network.
 
 #function to cast to Main Room
 maincast () {
@@ -42,9 +43,7 @@ select CHOICE in "Favourites" "Custom" ; do
    ;;
   "Custom")
    echo "What is the IP address of the device I should connect to?"
-#how tf does read work
-#"-r" option detects raw input and ignores special characters(?)
-#this is really b0rk
+#option -r detects raw input and ignores special characters(?)
    read -r REPLY
    recordmydesktop --overwrite --on-the-fly-encoding &
    castnow out.ogv --tomp4 --address $REPLY
