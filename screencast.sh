@@ -82,7 +82,9 @@ select CHOICE in "Favourites" "Custom" ; do
     read -r ADDR
     echo "Should I save this device to your Favourites? Y/N"
     read -r SAVEYN
-    if [ "${SAVEYN,,}" == "y*" ]; then
+#this is broken
+#how to?
+    if "${SAVEYN,,}" == [ "y" || "yes" ]; then
      savefav "$ADDR"
     else
      echo "I won't save this device."
